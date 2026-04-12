@@ -6,11 +6,11 @@
 #include "MinHook.h"
 #include "log.h"
 
-// Installs the Lua registration hook.
 bool Install_SetLuaFunctions_Hook();
-
-// Removes the Lua registration hook.
 bool Uninstall_SetLuaFunctions_Hook();
+
+bool Install_PlayerVoiceFpk_Hook();
+bool Uninstall_PlayerVoiceFpk_Hook();
 
 namespace
 {
@@ -57,6 +57,9 @@ static DWORD WINAPI InitThread(LPVOID)
     const bool okLua = Install_SetLuaFunctions_Hook();
     Log("[DLL] Install_SetLuaFunctions_Hook: %s\n", okLua ? "OK" : "FAIL");
 
+	const bool okPlayerVoiceFpk = Install_PlayerVoiceFpk_Hook();
+	Log("[DLL] Install_PlayerVoiceFpk_Hook: %s\n", okPlayerVoiceFpk ? "OK" : "FAIL");
+
     Log("[DLL] InitThread done.\n");
     return 0;
 }
@@ -68,6 +71,7 @@ static void UninstallAll(bool processTerminating)
         return;
 
     Uninstall_SetLuaFunctions_Hook();
+	Uninstall_PlayerVoiceFpk_Hook();
 
     MH_Uninitialize();
     Log("[DLL] UninstallAll done.\n");

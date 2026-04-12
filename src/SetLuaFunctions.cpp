@@ -1,17 +1,17 @@
 #include "pch.h"
-#include <Windows.h>
-#include <cstdint>
-#include <unordered_set>
-
-#include "HookUtils.h"
-#include "log.h"
-#include "FoxHashes.h"
-
 extern "C" {
     #include "lua.h"
     #include "lauxlib.h"
     #include "lualib.h"
 }
+
+#include <Windows.h>
+#include <cstdint>
+#include <unordered_set>
+#include "HookUtils.h"
+#include "log.h"
+#include "FoxHashes.h"
+#include <PlayerVoiceFpkHook.h>
 
 namespace
 {
@@ -144,9 +144,43 @@ static void PushLuaNumber(lua_State* L, float value)
     g_lua_pushnumber(L, static_cast<lua_Number>(value));
 }
 
+// Sets one player voice FPK override.
+// Params: playerType, path
+static int __cdecl l_SetPlayerVoiceFpkPathForType(lua_State* L)
+{
+    const int playerType = GetLuaInt(L, 1);
+    const char* rawPath = GetLuaString(L, 2);
+
+    if (!rawPath || !*rawPath)
+        return 0;
+
+    Set_PlayerVoiceFpkPathForType(static_cast<std::uint32_t>(playerType), rawPath);
+    return 0;
+}
+
+// Clears one player voice FPK override.
+// Params: playerType
+static int __cdecl l_ClearPlayerVoiceFpkPathForType(lua_State* L)
+{
+    const int playerType = GetLuaInt(L, 1);
+    Clear_PlayerVoiceFpkPathForType(static_cast<std::uint32_t>(playerType));
+    return 0;
+}
+
+// Clears all player voice FPK overrides.
+// Params: none
+static int __cdecl l_ClearAllPlayerVoiceFpkOverrides(lua_State* L)
+{
+    UNREFERENCED_PARAMETER(L);
+    Clear_AllPlayerVoiceFpkOverrides();
+    return 0;
+}
+
 static luaL_Reg g_HookSample[] =
-{   //SetDefaultEquipBgTexturePath is the one that is going to be used in lua.
-    //{ "SetDefaultEquipBgTexturePath",               l_SetDefaultEquipBgTexturePath },
+{   //SetPlayerVoiceFpkPathForType is the one that is going to be used in lua.
+     { "SetPlayerVoiceFpkPathForType",          l_SetPlayerVoiceFpkPathForType },
+    { "ClearPlayerVoiceFpkPathForType",         l_ClearPlayerVoiceFpkPathForType },
+    { "ClearAllPlayerVoiceFpkOverrides",        l_ClearAllPlayerVoiceFpkOverrides },
 
     { nullptr, nullptr }
 };

@@ -21,9 +21,9 @@ namespace AddressSetRuntime
 
     struct AddressSet
     {
-        uintptr_t FoxPath_Path = 0;
         uintptr_t GetCurrentMissionCode = 0;
-        uintptr_t LoadPlayerVoiceFpk = 0;
+        uintptr_t GetIconFtexPath = 0;
+        uintptr_t ShlnSetFovaImpl = 0;
     };
 
     inline GameBuild& GetGameBuild()
@@ -42,9 +42,9 @@ namespace AddressSetRuntime
     {
         static const AddressSet value =
         {
-            0x1400855B0ull, // FoxPath_Path
             0x145E5EE70ull, // GetCurrentMissionCode
-            0x146867240ull, // LoadPlayerVoiceFpk
+            0x145E62540ull, // GetIconFtexPath
+            0x146acc650ull, // ShlnSetFovaImpl
         };
 
         return value;
@@ -54,9 +54,9 @@ namespace AddressSetRuntime
     {
         static const AddressSet value =
         {
-            0x0ull, // FoxPath_Path
-            0x0ull, // GetCurrentMissionCode
-            0x0ull, // LoadPlayerVoiceFpk
+            0x0ull,         // GetCurrentMissionCode
+            0x147A6BD40ull, // GetIconFtexPath
+            0x0ull, // ShlnSetFovaImpl
         };
 
         return value;

@@ -5,12 +5,9 @@
 
 #include "MinHook.h"
 #include "log.h"
-
-bool Install_SetLuaFunctions_Hook();
-bool Uninstall_SetLuaFunctions_Hook();
-
-bool Install_PlayerVoiceFpk_Hook();
-bool Uninstall_PlayerVoiceFpk_Hook();
+#include "BuiltInModules.h"
+#include "FeatureModule.h"
+#include "AddressSet.h"
 
 namespace
 {
@@ -39,26 +36,32 @@ static void SetupConsole()
     fflush(stdout);
 }
 
-// Initializes MinHook and all runtime hooks on a worker thread.
+// Initializes MinHook, resolves addresses, and installs every registered feature module.
 static DWORD WINAPI InitThread(LPVOID)
 {
     #ifdef _DEBUG
     SetupConsole();
-    #endif // DEBUG
-
+    #endif
 
     Log("[DLL] InitThread started.\n");
+
+    HMODULE hGame = GetModuleHandleW(nullptr);
 
     const MH_STATUS st = MH_Initialize();
     Log("[DLL] MH_Initialize -> %d\n", static_cast<int>(st));
     if (st != MH_OK && st != MH_ERROR_ALREADY_INITIALIZED)
         return 0;
 
-    const bool okLua = Install_SetLuaFunctions_Hook();
-    Log("[DLL] Install_SetLuaFunctions_Hook: %s\n", okLua ? "OK" : "FAIL");
+    if (!ResolveAddressSet(hGame))
+    {
+        Log("[DLL] ResolveAddressSet failed.\n");
+        return 0;
+    }
 
-	const bool okPlayerVoiceFpk = Install_PlayerVoiceFpk_Hook();
-	Log("[DLL] Install_PlayerVoiceFpk_Hook: %s\n", okPlayerVoiceFpk ? "OK" : "FAIL");
+    RegisterBuiltInFeatureModules();
+
+    const bool allOk = FeatureModuleRegistry::Instance().InstallAll(hGame);
+    Log("[DLL] FeatureModuleRegistry::InstallAll -> %s\n", allOk ? "OK" : "PARTIAL/FAIL");
 
     Log("[DLL] InitThread done.\n");
     return 0;
@@ -70,8 +73,7 @@ static void UninstallAll(bool processTerminating)
     if (processTerminating)
         return;
 
-    Uninstall_SetLuaFunctions_Hook();
-	Uninstall_PlayerVoiceFpk_Hook();
+    FeatureModuleRegistry::Instance().UninstallAll();
 
     MH_Uninitialize();
     Log("[DLL] UninstallAll done.\n");

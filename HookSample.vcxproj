@@ -29,26 +29,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -154,8 +154,11 @@
     <ClInclude Include="include\MinHook.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="src\AddressSet.h" />
+    <ClInclude Include="src\BuiltInModules.h" />
+    <ClInclude Include="src\EquipIconFtexPathHook.h" />
+    <ClInclude Include="src\FeatureModule.h" />
     <ClInclude Include="src\MissionCodeGuard.h" />
-    <ClInclude Include="src\PlayerVoiceFpkHook.h" />
+    <ClInclude Include="src\ShlnSetFovaImpl.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
@@ -167,9 +170,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\BuiltInModules.cpp" />
+    <ClCompile Include="src\EquipIconFtexPathHook.cpp" />
+    <ClCompile Include="src\FeatureModule.cpp" />
     <ClCompile Include="src\MissionCodeGuard.cpp" />
-    <ClCompile Include="src\PlayerVoiceFpkHook.cpp" />
     <ClCompile Include="src\SetLuaFunctions.cpp" />
+    <ClCompile Include="src\ShlnSetFovaImpl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="lib\libMinHook.x64.lib" />

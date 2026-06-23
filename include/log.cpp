@@ -51,6 +51,23 @@ void Log(const char* fmt, ...)
     va_end(args);
 }
 
+void CrashLogf(const char* fmt, ...)
+{
+    va_list args;
+    va_start(args, fmt);
+    vprintf(fmt, args);
+    va_end(args);
+
+    if (g_LogFile)
+    {
+        va_list args2;
+        va_start(args2, fmt);
+        vfprintf(g_LogFile, fmt, args2);
+        va_end(args2);
+        fflush(g_LogFile);
+    }
+}
+
 void CloseLog()
 {
     if (g_LogFile)

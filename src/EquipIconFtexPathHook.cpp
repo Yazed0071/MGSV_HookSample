@@ -15,7 +15,6 @@
 namespace
 {
     // Absolute address of tpp::ui::utility::GetIconFtexPath.
-    // Params: outPathId (int64_t*), equipId (uint32_t), mode (int)
     using GetIconFtexPath_t = std::int64_t* (__fastcall*)(std::int64_t* outPathId, std::uint32_t equipId, int mode);
 
     static GetIconFtexPath_t g_OrigGetIconFtexPath = nullptr;
@@ -26,7 +25,6 @@ namespace
 }
 
 // Hooked entry: returns the override path when present, otherwise defers to the game.
-// Params: outPathId (int64_t*), equipId (uint32_t), mode (int)
 static std::int64_t* __fastcall hkGetIconFtexPath(std::int64_t* outPathId, std::uint32_t equipId, int mode)
 {
     if (MissionCodeGuard::ShouldBypassHooks())
@@ -56,7 +54,6 @@ static std::int64_t* __fastcall hkGetIconFtexPath(std::int64_t* outPathId, std::
 }
 
 // Installs the equip icon path selector hook.
-// Params: none
 bool Install_EquipIconFtexPath_Hook()
 {
     if (g_HookInstalled)
@@ -84,7 +81,6 @@ bool Install_EquipIconFtexPath_Hook()
 }
 
 // Removes the equip icon path selector hook and clears stored overrides.
-// Params: none
 bool Uninstall_EquipIconFtexPath_Hook()
 {
     if (!g_HookInstalled)
@@ -104,7 +100,6 @@ bool Uninstall_EquipIconFtexPath_Hook()
 }
 
 // Sets a per-equipId override from a raw .ftex path string.
-// Params: equipId (int), rawPath (const char*)
 void Set_EquipIconFtexPath(int equipId, const char* rawPath)
 {
     if (!rawPath || !*rawPath)
@@ -124,7 +119,6 @@ void Set_EquipIconFtexPath(int equipId, const char* rawPath)
 }
 
 // Clears the override for one equipId.
-// Params: equipId (int)
 void Clear_EquipIconFtexPath(int equipId)
 {
     {
@@ -136,7 +130,6 @@ void Clear_EquipIconFtexPath(int equipId)
 }
 
 // Clears every registered override.
-// Params: none
 void Clear_AllEquipIconFtexPaths()
 {
     {

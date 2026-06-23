@@ -4,4 +4,5 @@
 
 void InitLog();
 void Log(const char* fmt, ...);
+void CrashLogf(const char* fmt, ...);
 void CloseLog();

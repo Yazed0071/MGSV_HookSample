@@ -58,6 +58,8 @@ static DWORD WINAPI InitThread(LPVOID)
         return 0;
     }
 
+    InstallCrashHandler();
+
     RegisterBuiltInFeatureModules();
 
     const bool allOk = FeatureModuleRegistry::Instance().InstallAll(hGame);

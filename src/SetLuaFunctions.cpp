@@ -39,7 +39,7 @@ namespace
     static constexpr uintptr_t ABS_lua_tointeger = 0x141A12390ull;
 
     // Absolute address of the game's lua_tonumber thunk.
-// Params: L (lua_State*), idx (int)
+    // Params: L (lua_State*), idx (int)
     static constexpr uintptr_t ABS_lua_tonumber = 0x141A12460ull;
 
     // Absolute address of the game's lua_pushnumber thunk.
@@ -108,7 +108,6 @@ static bool RegisterLuaLibrary(lua_State* L, const char* libName, luaL_Reg* func
 }
 
 // Returns a Lua string argument or nullptr if unavailable.
-// Params: L (lua_State*), idx (int)
 static const char* GetLuaString(lua_State* L, int idx)
 {
     if (!ResolveLuaApi() || !g_lua_tolstring)
@@ -118,7 +117,6 @@ static const char* GetLuaString(lua_State* L, int idx)
 }
 
 // Returns a Lua integer argument using the game's Lua thunk.
-// Params: L (lua_State*), idx (int)
 static int GetLuaInt(lua_State* L, int idx)
 {
     if (!ResolveLuaApi() || !g_lua_tointeger)
@@ -196,7 +194,7 @@ static void RegisterAllUiLuaLibraries(lua_State* L)
 
     RegisterLuaLibrary(L, "HookSample", g_HookSample);
     g_RegisteredLuaStates.insert(L);
-}// Registers HookSample into a UI Lua state only once.
+}
 
 
 // Hooked version of SetLuaFunctions that appends HookSample registration.

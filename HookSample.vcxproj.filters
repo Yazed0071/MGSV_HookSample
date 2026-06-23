@@ -77,6 +77,12 @@
     <ClCompile Include="include\log.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\AddressSet_day1820.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AddressSet_day3800.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\SetLuaFunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

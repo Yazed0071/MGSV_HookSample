@@ -154,6 +154,7 @@
     <ClInclude Include="include\MinHook.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="src\AddressSet.h" />
+    <ClInclude Include="src\LuaApi.h" />
     <ClInclude Include="src\BuiltInModules.h" />
     <ClInclude Include="src\EquipIconFtexPathHook.h" />
     <ClInclude Include="src\FeatureModule.h" />
@@ -177,6 +178,7 @@
     <ClCompile Include="src\FeatureModule.cpp" />
     <ClCompile Include="src\MissionCodeGuard.cpp" />
     <ClCompile Include="src\SetLuaFunctions.cpp" />
+    <ClCompile Include="src\LuaApi.cpp" />
     <ClCompile Include="src\ShlnSetFovaImpl.cpp" />
   </ItemGroup>
   <ItemGroup>

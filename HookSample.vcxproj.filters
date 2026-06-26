@@ -48,6 +48,9 @@
     <ClInclude Include="src\AddressSet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\LuaApi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="src\MissionCodeGuard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -84,6 +87,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\SetLuaFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LuaApi.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\MissionCodeGuard.cpp">

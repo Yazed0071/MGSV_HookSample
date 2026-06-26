@@ -15,8 +15,33 @@ static const char* const kAddrFieldNames[] = {
     "GetCurrentMissionCode",
     "GetIconFtexPath",
     "ShlnSetFovaImpl",
+    "FoxLuaRegisterLibrary",
+    "lua_getfield",
+    "lua_gettop",
+    "lua_isnumber",
+    "lua_isstring",
+    "lua_objlen",
+    "lua_pushboolean",
+    "lua_pushnumber",
+    "lua_rawgeti",
+    "lua_settop",
+    "lua_toboolean",
+    "lua_tointeger",
+    "lua_tolstring",
+    "lua_tonumber",
+    "lua_type",
+    "lua_pushstring",
+    "lua_createtable",
+    "lua_rawset",
+    "lua_settable",
+    "lua_pushnil",
+    "lua_next",
+    "lua_gettable",
+    "lua_pushvalue",
+    "lua_pcall",
+    "lua_pushcclosure",
 };
-static const int kAddrFieldCount = 3;
+static const int kAddrFieldCount = 28;
 
 namespace AddressSetRuntime
 {
@@ -66,6 +91,31 @@ namespace AddressSetRuntime
             0x140911210ull, // GetCurrentMissionCode
             0x140912330ull, // GetIconFtexPath
             0x140B4E0A0ull, // ShlnSetFovaImpl
+            0x14006b8c0ull, // FoxLuaRegisterLibrary
+            0x141A111E0ull, // lua_getfield
+            0x141A112E0ull, // lua_gettop
+            0x141A11410ull, // lua_isnumber
+            0x141A11440ull, // lua_isstring
+            0x141A11640ull, // lua_objlen
+            0x141A11750ull, // lua_pushboolean
+            0x141A11950ull, // lua_pushnumber
+            0x141A11AE0ull, // lua_rawgeti
+            0x141A11F70ull, // lua_settop
+            0x141A120C0ull, // lua_toboolean
+            0x141A12120ull, // lua_tointeger
+            0x141A12150ull, // lua_tolstring
+            0x141A121F0ull, // lua_tonumber
+            0x141A12300ull, // lua_type
+            0x141A11970ull, // lua_pushstring
+            0x141A10E80ull, // lua_createtable
+            0x141A11B20ull, // lua_rawset
+            0x141A11F40ull, // lua_settable
+            0x141A11930ull, // lua_pushnil
+            0x141A11600ull, // lua_next
+            0x141A112B0ull, // lua_gettable
+            0x141A119D0ull, // lua_pushvalue
+            0x141A116C0ull, // lua_pcall
+            0x141A11770ull, // lua_pushcclosure
         };
         return value;
     }
@@ -77,6 +127,31 @@ namespace AddressSetRuntime
             0x1409110F0ull, // GetCurrentMissionCode
             0x140912210ull, // GetIconFtexPath
             0x140B4E1D0ull, // ShlnSetFovaImpl
+            0x14006B920ull, // FoxLuaRegisterLibrary
+            0x141A11120ull, // lua_getfield
+            0x141A11220ull, // lua_gettop
+            0x141A11350ull, // lua_isnumber
+            0x141A11380ull, // lua_isstring
+            0x141A11580ull, // lua_objlen
+            0x141A11690ull, // lua_pushboolean
+            0x141A11890ull, // lua_pushnumber
+            0x141A11A20ull, // lua_rawgeti
+            0x141A11EB0ull, // lua_settop
+            0x141A12010ull, // lua_toboolean
+            0x141A12070ull, // lua_tointeger
+            0x141A120A0ull, // lua_tolstring
+            0x141A12140ull, // lua_tonumber
+            0x141A12250ull, // lua_type
+            0x141A118B0ull, // lua_pushstring
+            0x141A10DC0ull, // lua_createtable
+            0x141A11A60ull, // lua_rawset
+            0x141A11E80ull, // lua_settable
+            0x141A11870ull, // lua_pushnil
+            0x141A11540ull, // lua_next
+            0x141A111F0ull, // lua_gettable
+            0x141A11910ull, // lua_pushvalue
+            0x141A11600ull, // lua_pcall
+            0x141A116B0ull, // lua_pushcclosure
         };
         return value;
     }

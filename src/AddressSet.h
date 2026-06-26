@@ -19,6 +19,32 @@ namespace AddressSetRuntime
         uintptr_t GetCurrentMissionCode = 0;
         uintptr_t GetIconFtexPath = 0;
         uintptr_t ShlnSetFovaImpl = 0;
+
+        uintptr_t FoxLuaRegisterLibrary = 0;
+        uintptr_t lua_getfield = 0;
+        uintptr_t lua_gettop = 0;
+        uintptr_t lua_isnumber = 0;
+        uintptr_t lua_isstring = 0;
+        uintptr_t lua_objlen = 0;
+        uintptr_t lua_pushboolean = 0;
+        uintptr_t lua_pushnumber = 0;
+        uintptr_t lua_rawgeti = 0;
+        uintptr_t lua_settop = 0;
+        uintptr_t lua_toboolean = 0;
+        uintptr_t lua_tointeger = 0;
+        uintptr_t lua_tolstring = 0;
+        uintptr_t lua_tonumber = 0;
+        uintptr_t lua_type = 0;
+        uintptr_t lua_pushstring = 0;
+        uintptr_t lua_createtable = 0;
+        uintptr_t lua_rawset = 0;
+        uintptr_t lua_settable = 0;
+        uintptr_t lua_pushnil = 0;
+        uintptr_t lua_next = 0;
+        uintptr_t lua_gettable = 0;
+        uintptr_t lua_pushvalue = 0;
+        uintptr_t lua_pcall = 0;
+        uintptr_t lua_pushcclosure = 0;
     };
 
     inline GameBuild& GetGameBuild()

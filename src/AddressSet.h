@@ -20,6 +20,7 @@ namespace AddressSetRuntime
         uintptr_t GetIconFtexPath = 0;
         uintptr_t ShlnSetFovaImpl = 0;
 
+        uintptr_t SetLuaFunctions = 0;
         uintptr_t FoxLuaRegisterLibrary = 0;
         uintptr_t lua_getfield = 0;
         uintptr_t lua_gettop = 0;

@@ -10,26 +10,37 @@ static FILE* g_LogFile = nullptr;
 
 void InitLog()
 {
-    #if _DEBUG
-
-    #endif // _DEBUG
-
-    AllocConsole();
-    FILE* dummy;
-    freopen_s(&dummy, "CONOUT$", "w", stdout);
-    freopen_s(&dummy, "CONOUT$", "w", stderr);
-
-    SetConsoleTitleA("MGSV Arabic Hook Console");
-
     char path[MAX_PATH];
     GetModuleFileNameA(nullptr, path, MAX_PATH);
     char* lastSlash = strrchr(path, '\\');
     if (lastSlash) *(lastSlash + 1) = '\0';
-    strcat_s(path, "MGSV_ArabicHook.log");
+    strcat_s(path, "HookSample.log");
 
     fopen_s(&g_LogFile, path, "w");
     if (g_LogFile)
         fprintf(g_LogFile, "[LOG] Log file created successfully.\n");
+}
+
+void EnsureConsole()
+{
+#ifdef _DEBUG
+    if (GetConsoleWindow())
+    {
+        ShowWindow(GetConsoleWindow(), SW_SHOW);
+        return;
+    }
+
+    if (!AllocConsole())
+        AttachConsole(ATTACH_PARENT_PROCESS);
+
+    FILE* fp = nullptr;
+    freopen_s(&fp, "CONOUT$", "w", stdout);
+    freopen_s(&fp, "CONOUT$", "w", stderr);
+    freopen_s(&fp, "CONIN$", "r", stdin);
+
+    SetConsoleTitleW(L"HookSample");
+    ShowWindow(GetConsoleWindow(), SW_SHOW);
+#endif
 }
 
 void Log(const char* fmt, ...)
@@ -76,5 +87,4 @@ void CloseLog()
         fclose(g_LogFile);
         g_LogFile = nullptr;
     }
-    FreeConsole();
 }

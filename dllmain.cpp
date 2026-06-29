@@ -8,6 +8,9 @@
 #include "BuiltInModules.h"
 #include "FeatureModule.h"
 #include "AddressSet.h"
+#include "HookUtils.h"
+
+bool g_HookBatchMode = false;
 
 namespace
 {
@@ -21,15 +24,7 @@ static void SetupConsole()
     if (gConsoleReady.load())
         return;
 
-    if (!AllocConsole())
-        AttachConsole(ATTACH_PARENT_PROCESS);
-
-    FILE* fp = nullptr;
-    freopen_s(&fp, "CONOUT$", "w", stdout);
-    freopen_s(&fp, "CONOUT$", "w", stderr);
-    freopen_s(&fp, "CONIN$", "r", stdin);
-
-    SetConsoleTitleW(L"V_FrameWork");
+    EnsureConsole();
     gConsoleReady.store(true);
 
     printf("[DLL] Console ready\n");
@@ -42,6 +37,8 @@ static DWORD WINAPI InitThread(LPVOID)
     #ifdef _DEBUG
     SetupConsole();
     #endif
+
+    InitLog();
 
     Log("[DLL] InitThread started.\n");
 
@@ -62,8 +59,12 @@ static DWORD WINAPI InitThread(LPVOID)
 
     RegisterBuiltInFeatureModules();
 
+    g_HookBatchMode = true;
     const bool allOk = FeatureModuleRegistry::Instance().InstallAll(hGame);
+    g_HookBatchMode = false;
+    const MH_STATUS applySt = MH_ApplyQueued();
     Log("[DLL] FeatureModuleRegistry::InstallAll -> %s\n", allOk ? "OK" : "PARTIAL/FAIL");
+    Log("[DLL] MH_ApplyQueued -> %d\n", static_cast<int>(applySt));
 
     Log("[DLL] InitThread done.\n");
     return 0;
@@ -82,6 +83,11 @@ static void UninstallAll(bool processTerminating)
 
     fflush(stdout);
     fflush(stderr);
+
+    CloseLog();
+
+    if (gConsoleReady.load())
+        FreeConsole();
 }
 
 // Standard Windows DLL entry point.
@@ -96,6 +102,8 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD reason, LPVOID lpReserved)
         bool expected = false;
         if (!gStarted.compare_exchange_strong(expected, true))
             return TRUE;
+
+        ResolveAddressSet(GetModuleHandleW(nullptr));
 
         HANDLE hThread = CreateThread(nullptr, 0, InitThread, nullptr, 0, nullptr);
         if (hThread)

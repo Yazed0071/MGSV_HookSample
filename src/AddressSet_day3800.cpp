@@ -15,6 +15,7 @@ static const char* const kAddrFieldNames[] = {
     "GetCurrentMissionCode",
     "GetIconFtexPath",
     "ShlnSetFovaImpl",
+    "SetLuaFunctions",
     "FoxLuaRegisterLibrary",
     "lua_getfield",
     "lua_gettop",
@@ -41,7 +42,7 @@ static const char* const kAddrFieldNames[] = {
     "lua_pcall",
     "lua_pushcclosure",
 };
-static const int kAddrFieldCount = 28;
+static const int kAddrFieldCount = sizeof(kAddrFieldNames) / sizeof(kAddrFieldNames[0]);
 
 namespace AddressSetRuntime
 {
@@ -91,7 +92,9 @@ namespace AddressSetRuntime
             0x140911210ull, // GetCurrentMissionCode
             0x140912330ull, // GetIconFtexPath
             0x140B4E0A0ull, // ShlnSetFovaImpl
-            0x14006b8c0ull, // FoxLuaRegisterLibrary
+
+            0x1408D81F0ull, // SetLuaFunctions
+            0x14006B8C0ull, // FoxLuaRegisterLibrary
             0x141A111E0ull, // lua_getfield
             0x141A112E0ull, // lua_gettop
             0x141A11410ull, // lua_isnumber
@@ -127,6 +130,8 @@ namespace AddressSetRuntime
             0x1409110F0ull, // GetCurrentMissionCode
             0x140912210ull, // GetIconFtexPath
             0x140B4E1D0ull, // ShlnSetFovaImpl
+
+            0x1408D8120ull, // SetLuaFunctions
             0x14006B920ull, // FoxLuaRegisterLibrary
             0x141A11120ull, // lua_getfield
             0x141A11220ull, // lua_gettop

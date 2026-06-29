@@ -11,6 +11,8 @@ namespace AddressSetRuntime
             0x145E5EE70ull, // GetCurrentMissionCode
             0x145E62540ull, // GetIconFtexPath
             0x146ACC650ull, // ShlnSetFovaImpl
+
+            0x1408D78A0ull, // SetLuaFunctions
             0x14006B6D0ull, // FoxLuaRegisterLibrary
             0x14C1D7320ull, // lua_getfield
             0x14C1D7D40ull, // lua_gettop
@@ -47,6 +49,8 @@ namespace AddressSetRuntime
             0x147A691E0ull, // GetCurrentMissionCode
             0x147A6BD40ull, // GetIconFtexPath
             0x148656360ull, // ShlnSetFovaImpl
+
+            0x1408D72B0ull, // SetLuaFunctions
             0x1431CC520ull, // FoxLuaRegisterLibrary
             0x14C987300ull, // lua_getfield
             0x14C987CB0ull, // lua_gettop
@@ -55,7 +59,7 @@ namespace AddressSetRuntime
             0x14C98A230ull, // lua_objlen
             0x14C98B310ull, // lua_pushboolean
             0x14C98D800ull, // lua_pushnumber
-            0x14C98Ebc0ull, // lua_rawgeti
+            0x14C98EBC0ull, // lua_rawgeti
             0x14C990ED0ull, // lua_settop
             0x14C991120ull, // lua_toboolean
             0x14C991B80ull, // lua_tointeger

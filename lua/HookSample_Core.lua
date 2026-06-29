@@ -9,12 +9,12 @@ if not ok then
     error("HookSample_Core: failed to require HookSample: " .. tostring(hookSampleOrErr))
 end
 
-local VFW = hookSampleOrErr
+local HS = hookSampleOrErr
 
-_G.VFW = VFW
-_G.HookSample = VFW
+_G.HS = HS
+_G.HookSample = HS
 _G.HookSample_Core = this
 
-this.HookSample = VFW
+this.HookSample = HS
 
 return this
